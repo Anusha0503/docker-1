@@ -9,7 +9,9 @@ node {
         withMaven(globalMavenSettingsConfig: '', jdk: 'java', maven: 'maven', mavenSettingsConfig: '', traceability: true) {
     sh 'mvn clean package'
            }
-   
+   stage ('docker build') {
+         sh " docker run -d -p 8086:8000 newimage "
+  }
    }
 
   
