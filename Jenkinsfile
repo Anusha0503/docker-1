@@ -12,9 +12,7 @@ node {
    
    }
 
-  stage ('docker build') {
-         sh " docker run -d -p 8086:8000 newimage "
-  }
+  
    
   
 
