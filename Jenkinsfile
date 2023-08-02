@@ -10,7 +10,8 @@ node {
     sh 'mvn clean package'
            }
    stage ('docker build') {
-         sh "docker run -d -p 8086:80 httpd "
+        sh " docker pull nginx"
+         sh "docker run -d -p 8084:80 nginx"
   }
    }
 
