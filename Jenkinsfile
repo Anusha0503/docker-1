@@ -9,10 +9,13 @@ node {
         withMaven(globalMavenSettingsConfig: '', jdk: 'java', maven: 'maven', mavenSettingsConfig: '', traceability: true) {
     sh 'mvn clean package'
            }
-   stage ('docker build') {
-        sh " docker pull nginx"
-         sh "docker run -d -p 8084:80 nginx"
+   stage ('docker build image') {
+        sh " docker build -t dockersampleimage ."
+        
   }
+     stage ('deploy'){
+       sh " docker run -d -p 8085:8000 dockersampleimage  "
+     }
    }
 
   
