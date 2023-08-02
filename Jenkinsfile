@@ -12,7 +12,7 @@ node {
    stage ('docker build image') {
         sh " pwd "
         sh " ls "
-        sh " docker build -f folder1/Dockerfile  "
+        sh " docker build . -t dockersampleimage -f folder1/Dockerfile"
         
   }
      stage ('deploy'){
