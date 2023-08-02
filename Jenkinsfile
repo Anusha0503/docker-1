@@ -10,6 +10,8 @@ node {
     sh 'mvn clean package'
            }
    stage ('docker build image') {
+        sh " pwd "
+        sh " ls "
         sh " docker build -t dockersampleimage ."
         
   }
