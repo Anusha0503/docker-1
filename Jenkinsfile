@@ -15,9 +15,7 @@ node {
         sh " docker build  -t dockersampleimage ."
         
   }
-     stage ('deploy'){
-       sh " docker run -d -p 8065:8000 dockersampleimage  "
-     }
+     
      stage ('docker tag&Push image'){
 
                sh " docker login -u mydocker1405 -p Password@123  "
