@@ -27,7 +27,7 @@ node {
           def dockerRun = "docker run -d -p 8084:8000 mydocker1405/springboot1:v1"
           sshagent(['webserverid']) {
 
-            sh" ssh -o StrictHostKeyChecking=no ubuntu@3.88.26.89 ${dockerRun} "
+            sh" ssh -o StrictHostKeyChecking=no ubuntu@44.204.227.64 ${dockerRun} "
             }
           }
         }
