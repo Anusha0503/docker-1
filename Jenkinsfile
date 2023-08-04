@@ -23,6 +23,13 @@ node {
                sh " docker push mydocker1405/springboot1:$BUILD_NUMBER "
                sh "docker pull mydocker1405/springboot1:6"
      }
+     stage ('deploy'){
+          def dockerRun = "docker run -d -p 8084:8000 mydocker1405/springboot1:v1"
+         sshagent(['web_server']) {
+
+            sh" ssh -o StrictHostKeyChecking=no ubuntu@3.88.26.89 ${dockerRun} "
+            }
+          }
         }
 
   
