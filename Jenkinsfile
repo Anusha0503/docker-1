@@ -19,8 +19,8 @@ node {
      stage ('docker tag&Push image'){
 
                sh " docker login -u mydocker1405 -p Password@123  "
-               sh "docker tag dockersampleimage:latest mydocker1405/springboot1:v1 "
-               sh " docker push mydocker1405/springboot1:v1 "
+               sh "docker tag dockersampleimage:latest mydocker1405/springboot1:$BUILD_NUMBER "
+               sh " docker push mydocker1405/springboot1:$BUILD_NUMBER "
      }
    }
 
