@@ -16,7 +16,7 @@ node {
         
   }
      stage ('deploy'){
-       sh " docker run -d -p 8085:8000 dockersampleimage  "
+       sh " docker run -d -p 8084:8000 dockersampleimage  "
      }
    }
 
