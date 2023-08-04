@@ -18,6 +18,12 @@ node {
      stage ('deploy'){
        sh " docker run -d -p 8065:8000 dockersampleimage  "
      }
+     stage ('docker tag&Push image'){
+
+               sh " docker login -u mydocker1405 -p Password@123  "
+               sh "docker tag sample:latest mydocker1405/springboot1:v1 "
+               sh " docker push mydocker1405/springboot1:v1 "
+     }
    }
 
   
