@@ -24,7 +24,7 @@ node {
      
      stage ('docker tag&Push image'){
 
-               sh " docker login -u $USER_NAME -p $PASSWORD  "
+               sh " docker login -u $USER_NAME -p $PASSWORD valuemomentum.jfrog.io "
                sh "docker tag dockersampleimage:latest $REPOSITORY/$IMAGE_NAME:$BUILD_NUMBER "
                sh " docker push $REPOSITORY/$IMAGE_NAME:$BUILD_NUMBER "
                sh "docker pull $REPOSITORY/$IMAGE_NAME:$BUILD_NUMBER"
