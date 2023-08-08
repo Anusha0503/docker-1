@@ -7,14 +7,15 @@ node {
 
    stage ('build'){ 
         withMaven(globalMavenSettingsConfig: '', jdk: 'java', maven: 'maven', mavenSettingsConfig: '', traceability: true) {
-    sh 'mvn clean package'
-           }
+        sh 'mvn clean package'
+                  }
+              }
    stage ('docker build image') {
         sh " pwd "
         sh " ls "
         sh " docker build  -t dockersampleimage ."
         
-  }
+                       }
      
      stage ('docker tag&Push image'){
 
@@ -24,14 +25,14 @@ node {
                sh "docker pull mydocker1405/springboot1:6"
      }
     
-          }
-        }
-   /* stage ('deploy'){
+          
+        
+      stage ('deploy'){
           def dockerRun = "docker run -d -p 8041:8000 mydocker1405/springboot1:v1"
           sshagent(['webserver3']) {
 
             sh" ssh -o StrictHostKeyChecking=no ubuntu@18.206.162.155 ${dockerRun} "
-            }*/
+            }
  
    
   
