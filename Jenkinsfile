@@ -28,10 +28,10 @@ node {
           
         
       stage ('deploy'){
-          def dockerRun = "docker run -d -p 8042:8000 mydocker1405/springboot1:v1"
+          def dockerRun = "docker run -d -p 8043:8000 mydocker1405/springboot1:v1"
           sshagent(['webserver1id']) {
 
-            sh" ssh -o StrictHostKeyChecking=no ubuntu@100.27.23.68 ${dockerRun} "
+            sh" ssh -o StrictHostKeyChecking=no ubuntu@54.167.220.76 ${dockerRun} "
             }
       }
 } 
