@@ -33,7 +33,8 @@ node {
 
             sh" ssh -o StrictHostKeyChecking=no ubuntu@18.206.162.155 ${dockerRun} "
             }
- 
+      }
+} 
    
   
 
@@ -41,4 +42,4 @@ node {
 
 
 
-}
+
