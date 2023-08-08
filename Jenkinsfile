@@ -39,6 +39,9 @@ node {
              sshagent(['webserver1id']) {
                 sh " ssh -o StrictHostKeyChecking=no ubuntu@54.167.220.76 'docker login -u $USER_NAME -p $PASSWORD valuemomentum.jfrog.io' "
                 sh" ssh -o StrictHostKeyChecking=no ubuntu@54.167.220.76 ${dockerRun} "
+                sh " ssh -o StrictHostKeyChecking=no ubuntu@54.167.220.76 'docker images' "
+                sh " ssh -o StrictHostKeyChecking=no ubuntu@54.167.220.76 'docker ps' "
+                
             }
       }
 } 
