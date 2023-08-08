@@ -26,13 +26,13 @@ node {
     
           }
         }
-    stage ('deploy'){
+   /* stage ('deploy'){
           def dockerRun = "docker run -d -p 8041:8000 mydocker1405/springboot1:v1"
           sshagent(['webserver3']) {
 
             sh" ssh -o StrictHostKeyChecking=no ubuntu@18.206.162.155 ${dockerRun} "
             }
- 
+ */
    
   
 
