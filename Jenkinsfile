@@ -1,6 +1,7 @@
 node {
         def REPOSITORY = params.REPOSITORY
         def APPLICATION = params.APPLICATION
+        def PORT = params.PORT
       
   stage ('checkout'){
            git branch: 'main', credentialsId: 'gitcredentials', url: 'https://github.com/Anusha0503/docker-1.git'
@@ -30,7 +31,7 @@ node {
           
         
       stage ('deploy'){
-          def dockerRun = "docker run -d -p 8045:8000 mydocker1405/springboot1:v1"
+          def dockerRun = "docker run -d -p $PORT:8000 mydocker1405/springboot1:v1"
           sshagent(['webserver1id']) {
 
             sh" ssh -o StrictHostKeyChecking=no ubuntu@54.167.220.76 ${dockerRun} "
