@@ -37,7 +37,7 @@ node {
               sh " docker logout"
               sh "docker pull $REPOSITORY/$IMAGE_NAME:$BUILD_NUMBER"
              sshagent(['webserver1id']) {
-                sh " docker login -u $USER_NAME -p $PASSWORD valuemomentum.jfrog.io "
+                sh " ssh -o StrictHostKeyChecking=no ubuntu@54.167.220.76 'docker login -u $USER_NAME -p $PASSWORD valuemomentum.jfrog.io' "
                 sh" ssh -o StrictHostKeyChecking=no ubuntu@54.167.220.76 ${dockerRun} "
             }
       }
