@@ -1,5 +1,7 @@
 node {
-
+        def REPOSITORY = params.REPOSITORY
+        def APPLICATION = params.APPLICATION
+      
   stage ('checkout'){
            git branch: 'main', credentialsId: 'gitcredentials', url: 'https://github.com/Anusha0503/docker-1.git'
  
@@ -20,15 +22,15 @@ node {
      stage ('docker tag&Push image'){
 
                sh " docker login -u mydocker1405 -p Password@123  "
-               sh "docker tag dockersampleimage:latest mydocker1405/springboot1:$BUILD_NUMBER "
-               sh " docker push mydocker1405/springboot1:$BUILD_NUMBER "
-               sh "docker pull mydocker1405/springboot1:6"
+               sh "docker tag dockersampleimage:latest $REPOSITORY/$APPLICATION:$BUILD_NUMBER "
+               sh " docker push $REPOSITORY/$APPLICATION:$BUILD_NUMBER "
+               sh "docker pull $REPOSITORY/$APPLICATION:$BUILD_NUMBER"
      }
     
           
         
       stage ('deploy'){
-          def dockerRun = "docker run -d -p 8043:8000 mydocker1405/springboot1:v1"
+          def dockerRun = "docker run -d -p 8045:8000 mydocker1405/springboot1:v1"
           sshagent(['webserver1id']) {
 
             sh" ssh -o StrictHostKeyChecking=no ubuntu@54.167.220.76 ${dockerRun} "
