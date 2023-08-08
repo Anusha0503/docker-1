@@ -1,6 +1,6 @@
 node {
         def REPOSITORY = params.REPOSITORY
-        def APPLICATION = params.APPLICATION
+        def IMAGE_NAME = params.IMAGE_NAME
         def PORT = params.PORT
         def USER_NAME = params.USER_NAME
         def PASSWORD = params.PASSWORD
@@ -25,15 +25,15 @@ node {
      stage ('docker tag&Push image'){
 
                sh " docker login -u $USER_NAME -p $PASSWORD  "
-               sh "docker tag dockersampleimage:latest $REPOSITORY/$APPLICATION:$BUILD_NUMBER "
-               sh " docker push $REPOSITORY/$APPLICATION:$BUILD_NUMBER "
-               sh "docker pull $REPOSITORY/$APPLICATION:$BUILD_NUMBER"
+               sh "docker tag dockersampleimage:latest $REPOSITORY/$IMAGE_NAME:$BUILD_NUMBER "
+               sh " docker push $REPOSITORY/$IMAGE_NAME:$BUILD_NUMBER "
+               sh "docker pull $REPOSITORY/$IMAGE_NAME:$BUILD_NUMBER"
      }
     
           
         
       stage ('deploy'){
-          def dockerRun = "docker run -d -p $PORT:8000 mydocker1405/springboot1:v1"
+          def dockerRun = "docker run -d -p $PORT:8000 $REPOSITORY/$IMAGE_NAME:$BUILD_NUMBER"
           sshagent(['webserver1id']) {
 
             sh" ssh -o StrictHostKeyChecking=no ubuntu@54.167.220.76 ${dockerRun} "
