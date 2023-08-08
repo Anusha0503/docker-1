@@ -2,6 +2,8 @@ node {
         def REPOSITORY = params.REPOSITORY
         def APPLICATION = params.APPLICATION
         def PORT = params.PORT
+        def USER_NAME = params.USER_NAME
+        def PASSWORD = params.PASSWORD
       
   stage ('checkout'){
            git branch: 'main', credentialsId: 'gitcredentials', url: 'https://github.com/Anusha0503/docker-1.git'
@@ -22,7 +24,7 @@ node {
      
      stage ('docker tag&Push image'){
 
-               sh " docker login -u mydocker1405 -p Password@123  "
+               sh " docker login -u $USER_NAME -p $PASSWORD  "
                sh "docker tag dockersampleimage:latest $REPOSITORY/$APPLICATION:$BUILD_NUMBER "
                sh " docker push $REPOSITORY/$APPLICATION:$BUILD_NUMBER "
                sh "docker pull $REPOSITORY/$APPLICATION:$BUILD_NUMBER"
