@@ -37,7 +37,7 @@ node {
             }
       }*/
       stage (' deploy to kubernetes'){
-             kubeconfig(credentialsId: 'kubeconfig', serverUrl: '') {
+            withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'Kubeconfig', namespace: '', restrictKubeConfigAccess: false, serverUrl: '')  {
              sh " pwd"
              sh " ls "
              sh " kubectl apply -f deployment.yaml"
