@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: springboot1-container
-        image: mydocker1405/springboot1:24
+        image: mydocker1405/springboot1:v4
         imagePullPolicy: Always
         ports:
         - containerPort: 8000
