@@ -24,8 +24,8 @@ node {
                sh " docker login -u mydocker1405 -p Password@123  "
                sh "docker tag dockersampleimage:latest mydocker1405/springboot1:v4 "
                /* sh " docker push mydocker1405/springboot1:v4 " */
-               sh " docker push anusha6.jfrog.io/docker-1/<mydocker1405/springboot1:v4>:<dockersampleimage:latest>"
-               sh " docker pull anusha6.jfrog.io/docker-1/<mydocker1405/springboot1:v4>:<dockersampleimage:latest> "
+               sh " docker push anusha6.jfrog.io/docker-1/mydocker1405/springboot1:v4:dockersampleimage:latest"
+               sh " docker pull anusha6.jfrog.io/docker-1/mydocker1405/springboot1:v4:dockersampleimage:latest "
                /*sh "docker pull mydocker1405/springboot1:v4" */
      }
     
