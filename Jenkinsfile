@@ -32,18 +32,13 @@ node {
     
           
         
-      stage ('deploy'){
-              def dockerRun = "docker run -d -p $PORT:8000 $REPOSITORY/$IMAGE_NAME:$BUILD_NUMBER"
-              sh " docker logout"
-              sh "docker pull $REPOSITORY/$IMAGE_NAME:$BUILD_NUMBER"
-             sshagent(['webserver1id']) {
-                sh " ssh -o StrictHostKeyChecking=no ubuntu@54.167.220.76 'docker login -u $USER_NAME -p $PASSWORD valuemomentum.jfrog.io' "
-                sh" ssh -o StrictHostKeyChecking=no ubuntu@54.167.220.76 ${dockerRun} "
-                sh " ssh -o StrictHostKeyChecking=no ubuntu@54.167.220.76 'docker images' "
-                sh " ssh -o StrictHostKeyChecking=no ubuntu@54.167.220.76 'docker ps' "
-                
-            }
-      }
+    stage (‘ deploy to k8s’) {
+        sshagent(['kubernetes_Master_pemfile']) {
+              sh " scp -o stricthostkeychecking=no deployment.yaml ubuntu@54.85.12.126:/home/ubuntu"
+              sh " ssh ubuntu@54.85.12.126  kubectl apply -f deployment.yaml"
+}
+}
+
 } 
    
   
