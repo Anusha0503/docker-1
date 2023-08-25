@@ -39,12 +39,10 @@ node {
             sh" ssh -o StrictHostKeyChecking=no ubuntu@54.167.220.76 ${dockerRun} "
             }
       }*/
-      stage (' deploy to kubernetes'){
-            withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'Kubeconfig', namespace: '', restrictKubeConfigAccess: false, serverUrl: '')  {
-             sh " pwd"
-             sh " ls "
-             sh " kubectl apply -f deployment.yaml"
-             sh " kubectl apply -f service.yaml"
+      stage (' deploy to k8s ') {
+        sshagent(['kubernetes_Master_pemfile']) {
+              sh " scp -o stricthostkeychecking=no deployment.yaml ubuntu@54.85.12.126:/home/ubuntu"
+              sh " ssh ubuntu@54.85.12.126  kubectl apply -f deployment.yaml"
             }
         
       }
