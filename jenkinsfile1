@@ -22,7 +22,8 @@ node {
      
      stage ('docker tag&Push image'){
                sh " docker login https://anusha6.jfrog.io -u anusha6 -p Welcome@123  "
-               
+               sh " docker tag dockersampleimage:latest anusha6.jfrog.io/docker-1/springboot1:v1 "
+               sh " docker push anusha6.jfrog.io/docker-1/springboot1:v1"
      }
     
 
