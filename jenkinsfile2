@@ -1,0 +1,11 @@
+node {
+          stage ('checkout'){
+           git branch: 'main', credentialsId: 'gitcredentials', url: 'https://github.com/Anusha0503/docker-1.git'
+ 
+         }
+   stage ('build'){ 
+        withMaven(globalMavenSettingsConfig: '', jdk: 'java', maven: 'maven', mavenSettingsConfig: '', traceability: true) {
+        sh 'mvn clean package'
+                  }
+              }
+     }
