@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: springboot1-app-deployment
+  name: docker-1-app-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: springboot1
+      app: docker-1
   template:
     metadata:
       labels:
-        app: springboot1
+        app: docker-1
     spec:
       containers:
-      - name: springboot1-container
-        image: mydocker1405/springboot1:v4
+      - name: docker-1-container
+        image: mydocker1405/docker-1:6
         imagePullPolicy: Always
         ports:
         - containerPort: 8000
